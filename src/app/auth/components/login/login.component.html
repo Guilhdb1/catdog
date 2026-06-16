@@ -1,0 +1,140 @@
+<div class="auth-page">
+  <div class="auth-card">
+    <div class="auth-brand">
+      <span class="auth-brand__icon">🐾</span>
+      <span class="auth-brand__name">CatDog</span>
+    </div>
+
+    <h1 class="auth-title">Entrar</h1>
+
+    <form [formGroup]="form" (ngSubmit)="submit()" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="login-email">Email</label>
+        <input
+          id="login-email"
+          class="form-input"
+          [class.form-input--error]="getEmailError()"
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+          autocomplete="email"
+        />
+        <span class="form-error" *ngIf="getEmailError()" role="alert">
+          {{ getEmailError() }}
+        </span>
+      </div>
+
+      <div class="form-group">
+        <label class="form-label" for="login-password">Senha</label>
+        <input
+          id="login-password"
+          class="form-input"
+          [class.form-input--error]="getPasswordError()"
+          type="password"
+          formControlName="password"
+          placeholder="••••••••"
+          autocomplete="current-password"
+        />
+        <span class="form-error" *ngIf="getPasswordError()" role="alert">
+          {{ getPasswordError() }}
+        </span>
+      </div>
+
+      <div class="form-actions">
+        <button
+          type="button"
+          class="btn-link"
+          (click)="openForgotModal()"
+        >
+          Esqueceu sua senha?
+        </button>
+      </div>
+
+      <div class="form-error form-error--block" *ngIf="loginError" role="alert">
+        {{ loginError }}
+      </div>
+
+      <button
+        type="submit"
+        class="btn btn--primary"
+        [disabled]="isLoading"
+      >
+        <span *ngIf="isLoading" class="spinner" aria-hidden="true"></span>
+        <span>{{ isLoading ? 'Entrando...' : 'Entrar' }}</span>
+      </button>
+    </form>
+
+    <p class="auth-footer">
+      Não tem uma conta?
+      <a routerLink="/auth/register" class="auth-footer__link">Cadastre-se</a>
+    </p>
+  </div>
+</div>
+
+<!-- Forgot Password Modal -->
+<div
+  class="modal-backdrop"
+  *ngIf="showForgotModal"
+  (click)="onModalBackdropClick($event)"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="forgot-title"
+>
+  <div class="modal">
+    <div class="modal__header">
+      <h2 class="modal__title" id="forgot-title">Recuperar senha</h2>
+      <button
+        type="button"
+        class="modal__close"
+        (click)="closeForgotModal()"
+        aria-label="Fechar modal"
+      >
+        &times;
+      </button>
+    </div>
+
+    <p class="modal__description">
+      Digite seu email e enviaremos um link para redefinir sua senha.
+    </p>
+
+    <form [formGroup]="forgotForm" (ngSubmit)="submitForgot()" novalidate>
+      <div class="form-group">
+        <label class="form-label" for="forgot-email">Email</label>
+        <input
+          id="forgot-email"
+          class="form-input"
+          [class.form-input--error]="getForgotEmailError()"
+          type="email"
+          formControlName="email"
+          placeholder="seu@email.com"
+          autocomplete="email"
+        />
+        <span class="form-error" *ngIf="getForgotEmailError()" role="alert">
+          {{ getForgotEmailError() }}
+        </span>
+      </div>
+
+      <div class="form-error form-error--block" *ngIf="forgotError" role="alert">
+        {{ forgotError }}
+      </div>
+
+      <div class="modal__actions">
+        <button
+          type="button"
+          class="btn btn--secondary"
+          (click)="closeForgotModal()"
+        >
+          Voltar
+        </button>
+        <button
+          type="submit"
+          class="btn btn--primary"
+          [disabled]="isForgotLoading"
+        >
+          <span *ngIf="isForgotLoading" class="spinner" aria-hidden="true"></span>
+          <span>{{ isForgotLoading ? 'Enviando...' : 'Enviar link' }}</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
