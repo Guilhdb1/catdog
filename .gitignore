@@ -4,6 +4,6 @@
 .env
 node_modules
 .angular
-dist
+dist/
 settings.local.json
 
