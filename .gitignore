@@ -5,3 +5,5 @@
 node_modules
 .angular
 dist
+settings.local.json
+
