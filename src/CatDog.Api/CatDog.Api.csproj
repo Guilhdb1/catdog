@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Compile Include="..\Modules\Authentication\**\*.cs" />
+    <Compile Include="..\Modules\SpeciesManagement\**\*.cs" />
     <Compile Include="..\Data\**\*.cs" />
     <Compile Include="..\Migrations\**\*.cs" />
   </ItemGroup>

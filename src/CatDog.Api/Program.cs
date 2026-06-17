@@ -4,6 +4,8 @@ using CatDog.Api.Modules.Authentication.Entities;
 using CatDog.Api.Modules.Authentication.Infrastructure;
 using CatDog.Api.Modules.Authentication.Repositories;
 using CatDog.Api.Modules.Authentication.Services;
+using CatDog.Api.Modules.SpeciesManagement.Repositories;
+using CatDog.Api.Modules.SpeciesManagement.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -33,6 +35,9 @@ builder.Services.AddScoped<IAuthRepository, AuthRepository>();
 builder.Services.AddScoped<AuthService>();
 builder.Services.AddScoped<IPasswordHasher<User>, PasswordHasher<User>>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+
+builder.Services.AddScoped<ISpeciesRepository, SpeciesRepository>();
+builder.Services.AddScoped<RegisterSpeciesUseCase>();
 
 var jwtSecret = builder.Configuration["JwtSettings:Secret"] ?? throw new InvalidOperationException("JWT secret is required");
 var jwtIssuer = builder.Configuration["JwtSettings:Issuer"] ?? "CatDog.Api";
@@ -71,3 +76,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+public partial class Program { }

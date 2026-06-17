@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using CatDog.Api.Modules.Authentication.Entities;
+using CatDog.Api.Modules.SpeciesManagement.Entities;
 
 namespace CatDog.Api.Data;
 
@@ -14,6 +15,7 @@ public class ApplicationDbContext : DbContext
     public DbSet<RefreshToken> RefreshTokens => Set<RefreshToken>();
     public DbSet<ConfirmationToken> ConfirmationTokens => Set<ConfirmationToken>();
     public DbSet<PasswordResetToken> PasswordResetTokens => Set<PasswordResetToken>();
+    public DbSet<Species> Species => Set<Species>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -72,6 +74,15 @@ public class ApplicationDbContext : DbContext
                 .WithMany(x => x.PasswordResetTokens)
                 .HasForeignKey(x => x.UserId)
                 .OnDelete(DeleteBehavior.Cascade);
+        });
+
+        modelBuilder.Entity<Species>(builder =>
+        {
+            builder.ToTable("species");
+            builder.HasKey(x => x.Id);
+            builder.Property(x => x.Name).HasMaxLength(50).IsRequired();
+            builder.HasIndex(x => x.Name).IsUnique();
+            builder.Property(x => x.CreatedAt).HasDefaultValueSql("CURRENT_TIMESTAMP");
         });
     }
 }

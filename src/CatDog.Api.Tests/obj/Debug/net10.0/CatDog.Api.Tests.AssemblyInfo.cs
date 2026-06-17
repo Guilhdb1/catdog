@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CatDog.Api.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d1823b131384890df80e2d867538a6eab673a9d8")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d6f29ea141fa6843872dfb6d6ed6f9cc80552007")]
 [assembly: System.Reflection.AssemblyProductAttribute("CatDog.Api.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CatDog.Api.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
